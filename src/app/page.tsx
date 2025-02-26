@@ -1,18 +1,18 @@
 "use client"
 
-import { useRef } from "react";
+import { useRef, RefObject } from "react";
 import Image from "next/image";
 import Countdown from "@/components/CountDownTimer";
 import CardBuy from "@/components/CardBuy";
 
 export default function Home() {
-  const home = useRef(null);
-  const ourHistory = useRef(null);
-  const gifts = useRef(null);
-  const rsvp = useRef(null);
-  const about = useRef(null);
+  const home = useRef<HTMLElement | null>(null);
+  const ourHistory = useRef<HTMLElement | null>(null);
+  const gifts = useRef<HTMLElement | null>(null);
+  const rsvp = useRef<HTMLElement | null>(null);
+  const about = useRef<HTMLElement | null>(null);
 
-  const scrollToSection = (ref: any) => {
+  const scrollToSection = (ref: RefObject<HTMLElement | null>) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
 

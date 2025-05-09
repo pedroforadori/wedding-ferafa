@@ -18,7 +18,7 @@ useEffect(() => {
 
 async function listGuest() {
     const querySnapshot = await getDocs(collection(firestore, "guest"));
-    var guests: any[] = []
+    let guests: any[] = []
     querySnapshot.forEach((doc) => { 
         guests.push(doc.data()) 
       });

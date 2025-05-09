@@ -1,14 +1,8 @@
 "use client"
 import { collection, addDoc, getDocs, where, query } from "firebase/firestore";
 import { firestore } from "../lib/firebase";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import Image from "next/image";
-import InputMask from "react-input-mask";
-
-interface IGuest {
-    name: string;
-    phone: string;
-}
 
 export default function Confirm() {
 
@@ -33,7 +27,7 @@ export default function Confirm() {
                 });
                 console.log("Document written with ID: ", docRef.id);
             } catch (error) {
-                console.error("Fail");
+                console.error(error);
             }
             setConfirmed("Presença confirmada. Esperamos você!");
         } else {
@@ -47,7 +41,7 @@ export default function Confirm() {
             const guestRef = collection(firestore, "guest");
             const q = query(guestRef, where("phone", "==", phone));
             const querySnapshot = await getDocs(q);
-            var guests: any[] = [];
+            let guests: any[] = [];
             querySnapshot.forEach((doc) => {
                 guests.push(doc.data());
             });

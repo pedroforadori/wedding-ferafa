@@ -2,19 +2,10 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import Countdown from "@/components/CountDownTimer";
 import CardBuy from "@/components/CardBuy";
 
 export default function GiftHome() {
-  const home = useRef(null);
-  const ourHistory = useRef(null);
   const gifts = useRef(null);
-  const rsvp = useRef(null);
-  const about = useRef(null);
-
-  const scrollToSection = (ref: any) => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <div className="bg-transparent max-sm:flex max-sm:flex-col max-sm:h-auto">

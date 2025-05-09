@@ -3,7 +3,6 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Countdown from "@/components/CountDownTimer";
-import CardBuy from "@/components/CardBuy";
 import { Copy } from "@phosphor-icons/react";
 import Confirm from "@/components/Confirm";
 
@@ -20,7 +19,7 @@ export default function Home() {
   };
 
   const links = "45332032803";
-  const copyQr = (e: any) => {
+  const copyQr = () => {
     navigator.clipboard.writeText(links)
       .then(() => {
         setTextCopy("Copiado")
@@ -122,7 +121,7 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {/* Cartão - Viagem */}
             <div className="border rounded-2xl p-6 shadow hover:shadow-lg transition">
-              <img
+              <Image
                 src="/travel-bag.png"
                 alt="Presente de viagem"
                 className="w-16 h-16 mx-auto mb-4"
@@ -140,7 +139,7 @@ export default function Home() {
 
             {/* Cartão - Casa */}
             <div className="border rounded-2xl p-6 shadow hover:shadow-lg transition">
-              <img
+              <Image
                 src="/house.png"
                 alt="Presente para casa"
                 className="w-16 h-16 mx-auto mb-4"
@@ -159,7 +158,7 @@ export default function Home() {
           {/* <div className="p-10 "> */}
           {/* Cartão - Viagem */}
           <div className="border rounded-2xl p-6 shadow hover:shadow-lg transition">
-            <img
+            <Image
               src="/qr-code.png"
               alt="Presente para casa"
               className="mx-auto mb-4"

@@ -1,9 +1,21 @@
 "use client"
 
 import Image from "next/image"
-import gifts from "../../public/data/gifts"
+import giftsTrip from "../../public/data/gifts-trip"
+import giftsHome from "../../public/data/gifts-home"
 
-export default function CardBuy() {
+interface gifts {
+    type: string
+}
+
+export default function CardBuy({ type }: gifts) {
+
+    const gifts = type === "trip" ? giftsTrip : giftsHome
+
+    const handleClick = (link: string) => {
+        window.open(link, "_blank");
+      };
+
     return (
         <>
             {gifts.map(item => (
@@ -20,13 +32,13 @@ export default function CardBuy() {
                             {item.description}
                         </p>
                     </div>
-                    <button className="w-[250px] h-[60px] bg-primary600 text-neutral50 rounded-md mt-1 text-3xl font-light">
+                    <button
+                        onClick={() => handleClick(item.link)}
+                        className="w-[250px] h-[60px] bg-primary600 text-neutral50 rounded-md mt-1 text-3xl font-light">
                         {item.price}
                     </button>
                 </div>
             ))}
         </>
-
-
     )
 }

@@ -1,9 +1,11 @@
 "use client"
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Countdown from "@/components/CountDownTimer";
 import CardBuy from "@/components/CardBuy";
+import { Copy } from "@phosphor-icons/react";
+import Confirm from "@/components/Confirm";
 
 export default function Home() {
   const home = useRef(null);
@@ -11,10 +13,25 @@ export default function Home() {
   const gifts = useRef(null);
   const rsvp = useRef(null);
   const about = useRef(null);
+  const [textCopy, setTextCopy] = useState("")
 
   const scrollToSection = (ref: any) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const links = "45332032803";
+  const copyQr = (e: any) => {
+    navigator.clipboard.writeText(links)
+      .then(() => {
+        setTextCopy("Copiado")
+        setTimeout(() => {
+          setTextCopy(""); // ou o texto original, como "Código PIX"
+        }, 5000); 
+      })
+      .catch((err) => {
+        console.error("Erro ao copiar o texto:", err);
+      });
+  }
 
   return (
     <div className="bg-transparent max-sm:flex max-sm:flex-col max-sm:h-auto">
@@ -95,67 +112,83 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="h-screen flex items-center bg-white flex-col justify-center max-sm:h-auto" ref={gifts}>
+      <div className="h-screen flex items-center bg-white flex-col justify-center gap-8 max-sm:h-auto" ref={gifts}>
         <h1 className="text-primary500 font-amelia text-6xl mt-8">Lista de presentes</h1>
-        <p className="font-josefin text-xl text-neutral40 text-justify font-light">
+        <p className="font-josefin text-xl text-neutral40 text-justify font-light max-sm:px-3">
           Ajude-nos a criar memórias inesquecíveis! Escolha um presente e faça parte dessa aventura!
         </p>
-        <div className="flex flex-wrap gap-8 p-4 w-3/5">
-          <CardBuy />
+        <div className="flex flex-wrap gap-8 p-4 w-3/5 justify-center max-sm:w-auto">
+          {/* <CardBuy /> */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {/* Cartão - Viagem */}
+            <div className="border rounded-2xl p-6 shadow hover:shadow-lg transition">
+              <img
+                src="/travel-bag.png"
+                alt="Presente de viagem"
+                className="w-16 h-16 mx-auto mb-4"
+              />
+              <h3 className="text-xl font-medium mb-2 text-primary500">Presente de Viagem</h3>
+              <p className="font-josefin text-lg text-neutral40 text-justify font-light">Ajude-nos a tornar nossa lua de mel ainda mais inesquecível!</p>
+              <a
+                href="/gift-trip"
+                target="_blank"
+                className="inline-block bg-primary500 text-white py-2 px-4 rounded hover:opacity-80 transition"
+              >
+                Ver lista
+              </a>
+            </div>
+
+            {/* Cartão - Casa */}
+            <div className="border rounded-2xl p-6 shadow hover:shadow-lg transition">
+              <img
+                src="/house.png"
+                alt="Presente para casa"
+                className="w-16 h-16 mx-auto mb-4"
+              />
+              <h3 className="text-xl font-medium mb-2 text-primary500">Presente para Casa</h3>
+              <p className="font-josefin text-lg text-neutral40 text-justify font-light">Contribua com itens que farão parte do nosso novo lar.</p>
+              <a
+                href="/gift-home"
+                target="_blank"
+                className="inline-block bg-primary500 text-white py-2 px-4 rounded hover:opacity-80 transition"
+              >
+                Ver lista
+              </a>
+            </div>
+          </div>
+          {/* <div className="p-10 "> */}
+          {/* Cartão - Viagem */}
+          <div className="border rounded-2xl p-6 shadow hover:shadow-lg transition">
+            <img
+              src="/qr-code.png"
+              alt="Presente para casa"
+              className="mx-auto mb-4"
+              width={200}
+              height={200}
+            />
+            <h3 className="text-xl font-medium mb-2 text-primary500">Presentei com QR Code</h3>
+            <p className="font-josefin text-lg text-neutral40 text-justify font-light">Escanei o amor, o pix vai direto para o felizes para sempre.</p>
+            <button
+              onClick={copyQr}
+              className="bg-primary500 text-white py-2 px-4 rounded hover:opacity-80 transition justify-center items-center"
+            >
+
+              {textCopy === "Copiado"
+                ? "Copiado"
+                : (
+                  <div className="flex flex-row gap-2">
+                    <Copy size={24} />
+                    Código PIX
+                  </div>
+
+                )}
+            </button>
+          </div>
         </div>
 
       </div>
       <div className="h-screen flex items-center justify-center bg-white flex-col max-sm:h-auto" ref={rsvp}>
-        <div className="flex flex-row justify-center gap-4 w-3/5">
-          <Image
-            className="w-[500px] h-[360px] rounded-lg hidden"
-            src="/gallery_1.jpg"
-            alt="Monograma"
-            width={515}
-            height={300}
-            objectFit="center"
-          />
-          <Image
-            className="w-[500px] h-[360px] rounded-lg hidden"
-            src="/gallery_2.jpg"
-            alt="Monograma"
-            width={515}
-            height={300}
-          />
-        </div>
-        <div className="flex flex-row gap-4 items-center justify-center p-4 max-sm:flex-col">
-          <div className="flex flex-col w-2/3 p-4 max-sm:w-full">
-            <h1 className="text-primary500 font-amelia text-6xl font-light max-sm:text-4xl">Confirme sua presença</h1>
-            <p className="font-josefin text-xl text-neutral40 text-justify font-light">
-              Confirme sua presença e celebre esse momento especial conosco!
-            </p>
-            <p className="font-josefin text-lg text-primary500 text-justify font-light">
-              Informações de Contato
-            </p>
-            <form className="flex flex-col gap-2 mt-4">
-              <input
-                placeholder="Seu nome"
-                type="text"
-                className="w-full h-8 mr-8 pl-3 text-neutral40 border rounded-md font-light focus:outline-none"
-              />
-              <input
-                placeholder="Seu celular"
-                type="text"
-                className="w-full h-8 mr-8 pl-3 text-neutral40 border rounded-md font-light focus:outline-none"
-              />
-              <button className="w-[160px] h-[44px] bg-primary500 text-white rounded-md mt-1 text-xl font-light">
-                Enviar
-              </button>
-            </form>
-          </div>
-          <Image
-            className=""
-            src="/confirme_presenca.png"
-            alt="Confirme presenca"
-            width={361}
-            height={542}
-          />
-        </div>
+        <Confirm />
       </div>
       <div className="h-screen flex items-center justify-center bg-white" ref={about}>
         <div className="flex flex-row gap-4 items-center justify-center p-4 max-sm:flex-col">
@@ -165,8 +198,8 @@ export default function Home() {
               Quinta da cantareira
             </p>
             <p className="font-josefin text-lg text-primary500 text-justify">
-              Av. Vereador Belarmino Pereira de Carvalho, 7960, 
-              Estr. da Roseira, 7960 – Apolinários, Mairiporã 
+              Av. Vereador Belarmino Pereira de Carvalho, 7960,
+              Estr. da Roseira, 7960 – Apolinários, Mairiporã
             </p>
             <p className="font-josefin text-2xl text-neutral50 text-justify font-light italic">
               26/07/2025
@@ -175,7 +208,7 @@ export default function Home() {
               15h30
             </p>
             <p className="font-josefin text-lg text-primary500 text-justify">
-              Traje social completo 
+              Traje social completo
             </p>
           </div>
           <Image

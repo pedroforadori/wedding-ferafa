@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import CardBuy from "@/components/CardBuy";
+import Link from "next/link";
 
 export default function GiftHome() {
   const gifts = useRef(null);
@@ -11,7 +12,7 @@ export default function GiftHome() {
     <div className="bg-transparent max-sm:flex max-sm:flex-col max-sm:h-auto">
       {/* Menu Fixo */}
       <nav className="fixed top-2 left-0 w-full text-greenAux p-4 flex  justify-end space-x-4 z-50 font-josefin">
-        <a
+        <Link
           href="/"
         >
           <Image
@@ -21,13 +22,13 @@ export default function GiftHome() {
             width={80}
             height={66}
           />
-        </a>
-        <a
+        </Link>
+        <Link
           href="/"
           className="italic max-sm:hidden"
         >
           Voltar
-        </a>
+        </Link>
       </nav>
 
       <div className="h-screen flex items-center bg-white flex-col justify-center max-sm:h-auto" ref={gifts}>

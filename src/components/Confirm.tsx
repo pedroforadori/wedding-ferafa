@@ -41,7 +41,7 @@ export default function Confirm() {
             const guestRef = collection(firestore, "guest");
             const q = query(guestRef, where("phone", "==", phone));
             const querySnapshot = await getDocs(q);
-            let guests: any[] = [];
+            const guests: any[] = [];
             querySnapshot.forEach((doc) => {
                 guests.push(doc.data());
             });

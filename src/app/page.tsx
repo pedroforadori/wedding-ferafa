@@ -25,7 +25,7 @@ export default function Home() {
         setTextCopy("Copiado")
         setTimeout(() => {
           setTextCopy(""); // ou o texto original, como "Código PIX"
-        }, 5000); 
+        }, 5000);
       })
       .catch((err) => {
         console.error("Erro ao copiar o texto:", err);
@@ -161,31 +161,39 @@ export default function Home() {
           </div>
           {/* <div className="p-10 "> */}
           {/* Cartão - Viagem */}
-          <div className="border rounded-2xl p-6 shadow hover:shadow-lg transition">
-            <Image
-              src="/qr-code.png"
-              alt="Presente para casa"
-              className="mx-auto mb-4"
-              width={200}
-              height={200}
-            />
-            <h3 className="text-xl font-medium mb-2 text-primary500">Presentei com QR Code</h3>
-            <p className="font-josefin text-lg text-neutral40 text-justify font-light">Escanei o amor, o pix vai direto para o felizes para sempre.</p>
-            <button
-              onClick={copyQr}
-              className="bg-primary500 text-white py-2 px-4 rounded hover:opacity-80 transition justify-center items-center"
-            >
-
-              {textCopy === "Copiado"
-                ? "Copiado"
-                : (
-                  <div className="flex flex-row gap-2">
-                    <Copy size={24} />
-                    Código PIX
-                  </div>
-
-                )}
-            </button>
+          <div className="border rounded-2xl p-6 sm:px-10 shadow hover:shadow-lg transition">
+            <div className="flex flex-col max-sm:flex-col sm:flex-row sm:items-center sm:gap-6">
+              <div>
+                <Image
+                  src="/qr-code.png"
+                  alt="Presente para casa"
+                  className="mx-auto mb-4 sm:mx-0"
+                  width={200}
+                  height={200}
+                />
+              </div>
+              <div>
+                <h3 className="text-xl font-medium mb-2 text-primary500">
+                  Presentei com QR Code
+                </h3>
+                <p className="font-josefin text-lg text-neutral40 text-justify font-light mb-4">
+                  Escanei o amor, o pix vai direto para o felizes para sempre.
+                </p>
+                <button
+                  onClick={copyQr}
+                  className="bg-primary500 text-white py-2 px-4 rounded hover:opacity-80 transition flex items-center gap-2"
+                >
+                  {textCopy === "Copiado" ? (
+                    "Copiado"
+                  ) : (
+                    <>
+                      <Copy size={24} />
+                      Código PIX
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 

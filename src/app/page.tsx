@@ -82,7 +82,7 @@ export default function Home() {
           fill
           className="w-full h-full top-0 left-0 object-cover"
         />
-        <p className="z-10 top-72 absolute text-7xl font-amelia max-sm:text-4xl">
+        <p className="z-10 top-72 absolute text-7xl font-amelia max-sm:text-4xl max-xl:top-60">
           Fernanda e Rafael
         </p>
         <div className="text-white text-xl font-light z-10 absolute top-3/4 left-4">
@@ -111,7 +111,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="h-screen flex items-center bg-white flex-col justify-center gap-8 max-sm:h-auto" ref={gifts}>
+      <div className="h-screen flex items-center bg-white flex-col justify-center gap-8 max-sm:h-auto max-xl:top-10" ref={gifts}>
         <h1 className="text-primary500 font-amelia text-6xl mt-8">Lista de presentes</h1>
         <p className="font-josefin text-xl text-neutral40 text-justify font-light max-sm:px-3">
           Ajude-nos a criar memórias inesquecíveis! Escolha um presente e faça parte dessa aventura!
@@ -125,6 +125,8 @@ export default function Home() {
                 src="/travel-bag.png"
                 alt="Presente de viagem"
                 className="w-16 h-16 mx-auto mb-4"
+                width={64}
+                height={64}
               />
               <h3 className="text-xl font-medium mb-2 text-primary500">Presente de Viagem</h3>
               <p className="font-josefin text-lg text-neutral40 text-justify font-light">Ajude-nos a tornar nossa lua de mel ainda mais inesquecível!</p>
@@ -143,6 +145,8 @@ export default function Home() {
                 src="/house.png"
                 alt="Presente para casa"
                 className="w-16 h-16 mx-auto mb-4"
+                width={64}
+                height={64}
               />
               <h3 className="text-xl font-medium mb-2 text-primary500">Presente para Casa</h3>
               <p className="font-josefin text-lg text-neutral40 text-justify font-light">Contribua com itens que farão parte do nosso novo lar.</p>
